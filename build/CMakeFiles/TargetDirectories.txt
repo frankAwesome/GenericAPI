@@ -1,0 +1,4 @@
+/Users/francois/Documents/GenericAPI/build/CMakeFiles/generate_models.dir
+/Users/francois/Documents/GenericAPI/build/CMakeFiles/my_target.dir
+/Users/francois/Documents/GenericAPI/build/CMakeFiles/edit_cache.dir
+/Users/francois/Documents/GenericAPI/build/CMakeFiles/rebuild_cache.dir
