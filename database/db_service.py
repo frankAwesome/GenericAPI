@@ -21,7 +21,7 @@ class DatabaseService:
         # app.config[
         #     'SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{username}:{password}@{server}/{database}?driver={driver};TrustServerCertificate=yes"
 
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://SA:password%401234@localhost:1433/TestProject?driver=ODBC+Driver+17+for+SQL+Server'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://SA:password%401234@172.17.0.2:1433/TestProject?driver=ODBC+Driver+17+for+SQL+Server'
 
 
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

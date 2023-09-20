@@ -7,7 +7,7 @@ class SwaggerSetup:
     @staticmethod
     def init_swagger():
         SWAGGER_URL = '/swagger'
-        API_URL = 'http://127.0.0.1:5000/swagger.json'
+        API_URL = 'http://localhost:5000/swagger.json'
         return get_swaggerui_blueprint(
             SWAGGER_URL,
             API_URL,

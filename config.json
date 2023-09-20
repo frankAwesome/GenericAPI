@@ -1,6 +1,6 @@
 {
     "sql_server": {
-        "server": "localhost:1433",
+        "server": "172.17.0.2:1433",
         "database": "TestProject",
         "username": "SA",
         "password": "password%401234",
