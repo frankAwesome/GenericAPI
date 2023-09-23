@@ -45,6 +45,7 @@ RUN pip install Flask-RESTful
 RUN pip install flask-swagger-ui
 RUN pip install pyodbc
 RUN pip install Flask SQLAlchemy pyodbc flask-sqlalchemy
+RUN pip install Flask pika
 
 RUN mkdir build && cd build && cmake .. && cmake --build . --target generate_models
 
