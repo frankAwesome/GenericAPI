@@ -2,6 +2,7 @@ import threading
 
 import pika
 
+from database.db_service import DatabaseService
 from nodes.hello_node import YourCallbackClass1
 from nodes.rabbit_two_node import YourCallbackClass2
 
@@ -33,6 +34,9 @@ class QueueWorker:
         self.channel.start_consuming()
 
 if __name__ == '__main__':
+
+    DatabaseService()
+
     queues_and_callbacks = [
         {'queue_name': 'rpc_queue', 'callback_class': YourCallbackClass1},
         {'queue_name': 'rpc_queue_2', 'callback_class': YourCallbackClass2},

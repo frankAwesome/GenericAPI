@@ -11,8 +11,6 @@ from swagger.swagger_setup import SwaggerSetup
 app = Flask(__name__)
 api = Api(app)
 
-DatabaseService.configure(app=app)
-
 api.add_resource(HelloWorld, '/hello')
 api.add_resource(Rabbit, '/rab')
 api.add_resource(RabbitTwo, '/rabtwo')

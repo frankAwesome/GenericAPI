@@ -1,29 +1,14 @@
-import json
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
 class DatabaseService:
-    @staticmethod
-    def configure(app):
-        # Read configuration from config.json
-        with open('config.json', 'r') as config_file:
-            config = json.load(config_file)
+    def __init__(self):
+        # Configure the database connection
+        db_uri = 'mssql+pyodbc://SA:password%401234@localhost:1433/TestProject?driver=ODBC+Driver+17+for+SQL+Server'
+        self.engine = create_engine(db_uri, echo=True)  # Set echo to True for SQL query logging
+        self.Session = sessionmaker(bind=self.engine)
 
-        # Extract SQL Server connection details from the config
-        sql_server_config = config.get('sql_server', {})
-        server = sql_server_config.get('server', 'localhost')
-        database = sql_server_config.get('database', 'YourDatabaseName')
-        username = sql_server_config.get('username', 'sa')
-        password = sql_server_config.get('password', 'YourPasswordHere')
-        driver = sql_server_config.get('driver', 'ODBC Driver 17 for SQL Server')
-
-        # Configure SQLAlchemy with the extracted values
-        # app.config[
-        #     'SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{username}:{password}@{server}/{database}?driver={driver};TrustServerCertificate=yes"
-
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://SA:password%401234@localhost:1433/TestProject?driver=ODBC+Driver+17+for+SQL+Server'
-
-
-        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-        app.db = SQLAlchemy(app)
+    def get_session(self):
+        # Return a session object
+        return self.Session()

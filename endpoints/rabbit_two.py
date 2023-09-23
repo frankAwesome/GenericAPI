@@ -10,18 +10,7 @@ from sql.address import AddressSql
 
 class RabbitTwo(Resource):
     def get(self):
-        sql_query = text(AddressSql.GET_ALL)
-        result = current_app.db.session.execute(sql_query)
-        db_resp = result.fetchall()
-
-        resp = Address(
-                city=db_resp[0].city,
-                street=db_resp[0].street,
-                zip=db_resp[0].zip,
-                state=db_resp[0].state
-            )
-
         response = InitMQ.rpc_request(message='dymanic message borkew number 2', QUEUE_NAME='rpc_queue_2')
 
-        return str(response)
+        return response
 

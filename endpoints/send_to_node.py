@@ -1,3 +1,5 @@
+import json
+
 import pika
 
 
@@ -41,4 +43,12 @@ class InitMQ:
             connection.process_data_events()
 
         connection.close()
-        return response
+
+        message_str = response.decode('utf-8')
+
+        try:
+            message_data = json.loads(message_str)
+        except json.JSONDecodeError:
+            message_data = message_str
+
+        return message_data
