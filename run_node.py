@@ -2,7 +2,7 @@ import threading
 
 import pika
 
-from database.db_service import DatabaseService
+from tunclibs.db_service import DatabaseService
 from nodes.hello_node import YourCallbackClass1
 from nodes.rabbit_two_node import YourCallbackClass2
 

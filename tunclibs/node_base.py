@@ -1,4 +1,4 @@
-from database.db_service import DatabaseService
+from tunclibs.db_service import DatabaseService
 
 
 class RabbitMQWorkerCallbackBase:

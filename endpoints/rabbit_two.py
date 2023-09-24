@@ -1,11 +1,6 @@
-import pika
-from flask_restful import Resource, current_app
-from flask import jsonify
-from sqlalchemy.sql import text
+from flask_restful import Resource
 
-from endpoints.send_to_node import InitMQ
-from models.Address import Address
-from sql.address import AddressSql
+from tunclibs.send_to_node import InitMQ
 
 
 class RabbitTwo(Resource):
