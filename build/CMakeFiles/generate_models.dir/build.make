@@ -68,7 +68,7 @@ include CMakeFiles/generate_models.dir/progress.make
 
 CMakeFiles/generate_models:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/francois/Documents/GenericAPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python models from Swagger JSON"
-	cd /Users/francois/Documents/GenericAPI && /opt/homebrew/Cellar/cmake/3.26.4/bin/cmake -E env PYTHONPATH=/Users/francois/Documents/GenericAPI python generate_models.py
+	cd /Users/francois/Documents/GenericAPI && /opt/homebrew/Cellar/cmake/3.26.4/bin/cmake -E env PYTHONPATH=/Users/francois/Documents/GenericAPI python src/tunclibs/generate_models.py
 
 generate_models: CMakeFiles/generate_models
 generate_models: CMakeFiles/generate_models.dir/build.make

@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from tunclibs.send_to_node import InitMQ
+from src.tunclibs.send_to_node import InitMQ
 
 
 class Rabbit(Resource):

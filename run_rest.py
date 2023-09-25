@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 import json
-from endpoints.rabbit import Rabbit
-from endpoints.rabbit_two import RabbitTwo
-from tunclibs.swagger_setup import SwaggerSetup
+from src.endpoints.rabbit import Rabbit
+from src.endpoints.rabbit_two import RabbitTwo
+from src.tunclibs.swagger_setup import SwaggerSetup
 
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ app.register_blueprint(SwaggerSetup.init_swagger(), url_prefix='/swagger')
 
 @app.route('/swagger.json')
 def swagger():
-    with open('swagger.json', 'r') as f:
+    with open('src/common/swagger.json', 'r') as f:
         return jsonify(json.load(f))
 
 

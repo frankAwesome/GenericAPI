@@ -1,10 +1,9 @@
 import threading
-
 import pika
 
-from tunclibs.db_service import DatabaseService
-from nodes.hello_node import YourCallbackClass1
-from nodes.rabbit_two_node import YourCallbackClass2
+from src.tunclibs.db_service import DatabaseService
+from src.nodes.hello_node import YourCallbackClass1
+from src.nodes.rabbit_two_node import YourCallbackClass2
 
 
 class RabbitMQWorkerCallbackBase:
@@ -32,6 +31,7 @@ class QueueWorker:
     def start_consuming(self):
         print(f'Worker for queue "{self.queue_name}" is waiting for RPC requests. To exit, press Ctrl+C')
         self.channel.start_consuming()
+
 
 if __name__ == '__main__':
 

@@ -1,10 +1,10 @@
 import json
 import pika
 from sqlalchemy import text
-from models.Address import Address
-from tunclibs.node_base import RabbitMQWorkerCallbackBase
-from tunclibs.node_response import NodeResponse
-from sql.address import AddressSql
+from build.models.Address import Address
+from src.tunclibs.node_base import RabbitMQWorkerCallbackBase
+from src.tunclibs.node_response import NodeResponse
+from src.sql.address import AddressSql
 
 
 class YourCallbackClass2(RabbitMQWorkerCallbackBase):

@@ -1,6 +1,6 @@
 import pika
-from tunclibs.node_base import RabbitMQWorkerCallbackBase
-from tunclibs.node_response import NodeResponse
+from src.tunclibs.node_base import RabbitMQWorkerCallbackBase
+from src.tunclibs.node_response import NodeResponse
 
 
 class YourCallbackClass1(RabbitMQWorkerCallbackBase):

@@ -2,12 +2,12 @@ import json
 import os
 
 # Load your Swagger JSON file
-swagger_file = 'swagger.json'
+swagger_file = 'src/common/swagger.json'
 with open(swagger_file, 'r') as f:
     swagger_data = json.load(f)
 
 # Create a models folder if it doesn't exist
-models_folder = 'models'
+models_folder = 'build/models'
 os.makedirs(models_folder, exist_ok=True)
 
 # Access the "components" section to extract schemas
