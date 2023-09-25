@@ -2,11 +2,17 @@ FROM python:3.9
 
 WORKDIR /
 
-COPY /run_node.py run_node.py
+COPY /CMakeLists.txt CMakeLists.txt
 COPY /run_rest.py run_rest.py
 
-RUN mkdir /src
-COPY src /src
+RUN mkdir -p /src/endpoints
+COPY src/endpoints /src/endpoints
+
+RUN mkdir -p /src/tunclibs
+COPY src/tunclibs /src/tunclibs
+
+RUN mkdir -p /src/common
+COPY src/common /src/common
 
 RUN apt-get update && apt-get install -y cmake
 RUN yes | apt install unixodbc-dev
@@ -29,8 +35,7 @@ RUN pip install -U flask-cors
 RUN pip install Flask-RESTful
 RUN pip install flask-swagger-ui
 RUN pip install pyodbc
-RUN pip install Flask SQLAlchemy pyodbc flask-sqlalchemy
-RUN pip install Flask pika
+RUN pip install pika
 
 RUN mkdir -p build && cd build && cmake .. && cmake --build . --target generate_models
 

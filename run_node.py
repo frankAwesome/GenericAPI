@@ -18,7 +18,7 @@ class QueueWorker:
         self.connection = None
         self.channel = None
 
-    def connect(self, host='localhost'):
+    def connect(self, host='172.17.0.3'):
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.queue_name)

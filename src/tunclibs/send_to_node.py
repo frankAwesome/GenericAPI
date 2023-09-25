@@ -6,7 +6,7 @@ import pika
 class InitMQ:
     @staticmethod
     def rpc_request(message, QUEUE_NAME):
-        connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+        connection = pika.BlockingConnection(pika.ConnectionParameters('172.17.0.3'))
         channel = connection.channel()
 
         # Declare a queue for sending requests

@@ -3,15 +3,19 @@ FROM python:3.9
 WORKDIR /
 
 COPY /run_node.py run_node.py
+COPY /CMakeLists.txt CMakeLists.txt
 
-RUN mkdir /src/node
-COPY src/node /src/node
+RUN mkdir -p /src/nodes
+COPY src/nodes /src/nodes
 
-RUN mkdir /src/sql
+RUN mkdir -p /src/sql
 COPY src/sql /src/sql
 
-RUN mkdir /src/tunclibs
+RUN mkdir -p /src/tunclibs
 COPY src/tunclibs /src/tunclibs
+
+RUN mkdir -p /src/common
+COPY src/common /src/common
 
 RUN apt-get update && apt-get install -y cmake
 RUN yes | apt install unixodbc-dev
@@ -34,7 +38,5 @@ RUN pip install SQLAlchemy
 RUN pip install pika
 
 RUN mkdir -p build && cd build && cmake .. && cmake --build . --target generate_models
-
-EXPOSE 5000
 
 CMD [ "python", "run_node.py" ]
