@@ -1,7 +1,8 @@
 import threading
 import pika
 
-from src.tunclibs.db_service import DatabaseService
+from src.yaaylibs import yaay_splash
+from src.yaaylibs.db_service import DatabaseService
 from src.nodes.hello_node import YourCallbackClass1
 from src.nodes.rabbit_two_node import YourCallbackClass2
 
@@ -34,6 +35,7 @@ class QueueWorker:
 
 
 if __name__ == '__main__':
+    yaay_splash.yaay_splash()
 
     DatabaseService()
 

@@ -36,6 +36,7 @@ RUN pip install Flask-RESTful
 RUN pip install flask-swagger-ui
 RUN pip install pyodbc
 RUN pip install pika
+RUN pip install climage
 
 RUN mkdir -p build && cd build && cmake .. && cmake --build . --target generate_models
 

@@ -1,4 +1,4 @@
-from src.tunclibs.db_service import DatabaseService
+from src.yaaylibs.db_service import DatabaseService
 
 
 class RabbitMQWorkerCallbackBase:

@@ -3,9 +3,11 @@ from flask_restful import Api
 import json
 from src.endpoints.rabbit import Rabbit
 from src.endpoints.rabbit_two import RabbitTwo
-from src.tunclibs.swagger_setup import SwaggerSetup
+from src.yaaylibs import yaay_splash
+from src.yaaylibs.swagger_setup import SwaggerSetup
 
 
+yaay_splash.yaay_splash()
 app = Flask(__name__)
 api = Api(app)
 

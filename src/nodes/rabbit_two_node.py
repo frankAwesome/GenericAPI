@@ -2,8 +2,8 @@ import json
 import pika
 from sqlalchemy import text
 from build.models.Address import Address
-from src.tunclibs.node_base import RabbitMQWorkerCallbackBase
-from src.tunclibs.node_response import NodeResponse
+from src.yaaylibs.node_base import RabbitMQWorkerCallbackBase
+from src.yaaylibs.node_response import NodeResponse
 from src.sql.address import AddressSql
 
 

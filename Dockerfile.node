@@ -36,6 +36,7 @@ RUN pip install --upgrade pip
 RUN pip install pyodbc
 RUN pip install SQLAlchemy
 RUN pip install pika
+RUN pip install climage
 
 RUN mkdir -p build && cd build && cmake .. && cmake --build . --target generate_models
 
