@@ -1,6 +1,7 @@
 import importlib
 import inspect
 import os
+import threading
 
 import yaml
 
@@ -39,3 +40,11 @@ def setup_broker_queues(imported_classes, script_dir):
                 workers.append(worker)
 
     return workers
+
+
+def start():
+    threads = [threading.Thread(target=worker.start_consuming) for worker in workers]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
