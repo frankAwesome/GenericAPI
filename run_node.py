@@ -1,10 +1,11 @@
+import os
 import threading
 import pika
+import yaml
+import importlib
+import inspect
 
 from src.yaaylibs import yaay_splash
-from src.yaaylibs.db_service import DatabaseService
-from src.nodes.hello_node import YourCallbackClass1
-from src.nodes.rabbit_two_node import YourCallbackClass2
 
 
 class RabbitMQWorkerCallbackBase:
@@ -35,23 +36,35 @@ class QueueWorker:
 
 
 if __name__ == '__main__':
+    script_dir = os.path.dirname(os.path.abspath(__file__))
     yaay_splash.yaay_splash()
 
-    DatabaseService()
+    module_files = [f for f in os.listdir(os.path.join(script_dir, 'src/nodes')) if f.endswith('.py')]
+    imported_classes = {}
 
-    queues_and_callbacks = [
-        {'queue_name': 'rpc_queue', 'callback_class': YourCallbackClass1},
-        {'queue_name': 'rpc_queue_2', 'callback_class': YourCallbackClass2},
-        # Add more queue/callback pairs as needed
-    ]
+    for module_file in module_files:
+        module_name = os.path.splitext(module_file)[0]
+        module = importlib.import_module(f"{'src.nodes'}.{module_name}")
+        classes = [cls for cls in module.__dict__.values() if inspect.isclass(cls)]
+
+        for class_obj in classes:
+            class_name = class_obj.__name__
+            imported_classes[class_name] = class_obj
+            print(f'imported message handler: {class_name}')
+
+    with open(os.path.join(script_dir, 'src/common/queues.yaml'), 'r') as config_file:
+        config = yaml.safe_load(config_file)
 
     workers = []
-    for item in queues_and_callbacks:
-        worker = QueueWorker(item['queue_name'], item['callback_class'])
-        worker.connect()
-        workers.append(worker)
+    for queue_config in config['queues']:
+        queue_name = queue_config['name']
+        for class_config in config['classes']:
+            if class_config['queue'] == queue_name:
+                callback_class_name = class_config['name']
+                worker = QueueWorker(queue_name, imported_classes[callback_class_name])
+                worker.connect()
+                workers.append(worker)
 
-    # Start each worker in a separate thread
     threads = [threading.Thread(target=worker.start_consuming) for worker in workers]
 
     for thread in threads:

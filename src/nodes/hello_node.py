@@ -1,4 +1,5 @@
 import pika
+
 from src.yaaylibs.node_base import RabbitMQWorkerCallbackBase
 from src.yaaylibs.node_response import NodeResponse
 
