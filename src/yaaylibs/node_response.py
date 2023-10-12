@@ -1,6 +1,9 @@
+import pika
+
+
 class NodeResponse:
     @staticmethod
-    def send_http_response(response, properties, pika, ch, method):
+    def send_http_response(response, properties, ch, method):
         # Send the response back to the response queue
         ch.basic_publish(
             exchange='',

@@ -1,5 +1,4 @@
 import json
-import pika
 from sqlalchemy import text
 from build.models.Address import Address
 from src.yaaylibs.node_base import RabbitMQWorkerCallbackBase
@@ -23,4 +22,4 @@ class YourCallbackClass2(RabbitMQWorkerCallbackBase):
         resp_dict = response.to_dict()
         json_string = json.dumps(resp_dict, indent=4)
 
-        NodeResponse.send_http_response(response=json_string, pika=pika, properties=properties, ch=ch, method=method)
+        NodeResponse.send_http_response(response=json_string, properties=properties, ch=ch, method=method)
